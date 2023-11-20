@@ -1,0 +1,58 @@
+import java.util.Scanner;
+
+/**
+ * This class simulates the behaviors of an elevator
+ * @author cgsze
+ */
+public class Elevator {
+  static String currentFloor = "1";//start at ground floor 1
+  
+  /**
+   * The main method that runs the user input loop
+   * @param args
+   */
+  public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);//scanner prompts user input
+    String request = "";//user input
+    String options = "12345E";//valid elevator button input options
+    
+    //initiate elevator buttons
+    Button[] buttons = new Button[5];
+    for(int i = 0; i < buttons.length; i++) {
+      buttons[i] = new Button(Integer.toString(i));
+    }
+    
+    //live elevator loop
+    while (!request.equals("E")) {
+      System.out.println("Elevator is Running\n(1) (2) (3)\n(4) (5) (E)");
+      request = scan.nextLine();
+      
+      //check that button request is valid
+      if (!options.contains(request)) {
+        System.out.println("Invalid Request: Please try again");
+        continue;
+      }//end of valid input conditional
+      
+      //press correct button
+      for (int j = 0; j < buttons.length; j++) {
+        Button b = buttons[j];
+        if(request.equals(b.buttonLabel)) {
+          pressButton(b);
+        }
+      }
+      System.out.println("Current Floor: " + currentFloor);
+      
+    }//end of while loop
+    
+    System.out.println("Elevator has powered down");
+  }//end of main method
+  
+  /**
+   * Helper method to handle what happens when a button is pressed
+   * @param b: button being pressed
+   */
+  public static void pressButton(Button b) {
+    currentFloor = b.buttonLabel;
+  }
+    
+}
