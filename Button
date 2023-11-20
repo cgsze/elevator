@@ -1,0 +1,16 @@
+/**
+ * This class represents a button object in an elevator
+ * @author cgsze
+ */
+public class Button {
+    String buttonLabel = "";
+    
+    /**
+     * Constructor for a Button object
+     * @param label: button's label (1-5 or E to exit)
+     */
+    public Button(String label) {
+      this.buttonLabel = label;
+    }//end of constructor
+    
+}//end of class
